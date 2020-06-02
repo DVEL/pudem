@@ -22,17 +22,17 @@ invent = dict()
 
 
 def menu():
-    izb = input("Za ispis cijelog inv 'i' za ispis pojedinog pred 'p', dodavanje 'd', micanje 'r', izlaz 'q': ")
-    while izb != "q":
-        if izb in opcije:
-            nar = opcije[izb]
+    izbor = input("Za ispis cijelog inv 'i' za ispis pojedinog pred 'p', dodavanje 'd', micanje 'r', izlaz 'q': ")
+    while izbor != "q":
+        if izbor in opcije:
+            nar = opcije[izbor]
             nar()
         else:
             print("nepoznata naredba!")
         
-        izb = input("Za ispis cijelog inv 'i' za ispis pojedinog pred 'p', dodavanje 'd', micanje 'r', izlaz 'q': ")
+        izbor = input("Za ispis cijelog inv 'i' za ispis pojedinog pred 'p', dodavanje 'd', micanje 'r', izlaz 'q': ")
     
-    if izb == "q": print("Kraj!")
+    if izbor == "q": print("Kraj!")
 
 
 def ispis():
@@ -42,7 +42,8 @@ def ispis():
 
 def ispisp():
     k = input("koji predmet trzis?").lower()
-    print(f"predmet {k} ima {invent[k]} u inventoriju.")
+    if k in invent:
+        print(f"predmet {k} ima {invent[k]} u inventoriju.")
 
 
 def dodavanje():
