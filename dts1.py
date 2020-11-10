@@ -6,6 +6,7 @@ Created on Thu May 28 11:57:55 2020
 @author: davidv
 """
 import pprint
+pp = pprint.PrettyPrinter()
 
 users = [
        { "id": 0, "name": "Hero" },
@@ -24,8 +25,10 @@ users = [
 friendships = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4),
                (4, 5), (5, 6), (5, 7), (6, 8), (7, 8), (8, 9)]
 
+
 for user in users:
     user["friends"] = []
+
 
 def dodaj(x,y):
     """
@@ -46,18 +49,49 @@ def dodaj(x,y):
         elif user["id"] == y:
             user["friends"].append(x)
 
+
+def number_of_friends(user):
+    """ number of friends, a person has """
+    return len(user["friends"])
+
+
+def total_connections():
+    """ ukupan broj prijatelja koji postoje """
+    total_connections = sum(number_of_friends(user) for user in users)
+    return total_connections
+
+
 def av_connections():
-    total_connections = sum(len(user["friends"]) for user in users)
-    average_connections = total_connections / len(users)
+    """ average number of connections """
+    average_connections = total_connections() / len(users)
     return average_connections    
 
     
+def povezanost():
+    """ lista povezanosti po imenima """
+    p_povezanost = [(user["name"], number_of_friends(user)) for user in users]
+    s_povezanost = sorted(p_povezanost,
+                          key=lambda user : user[1],
+                          reverse=True)
+    return(s_povezanost)
+
 for connection in friendships:
     x,y = connection
     dodaj(x,y)
 
-pp = pprint.PrettyPrinter()
+def foaf():
+    lista_frendova = []
+    for user in users:
+        lista_frendova.append(user["name"])
+        for friend in user["friends"]:
+            lista_frendova.append(friend["friends"])
+    print(lista_frendova)
 
-pp.pprint(users)        
-
-pp.pprint(av_connections())
+print(foaf())
+'''
+print(f"""
+        ukupna povezanost: {total_connections()},
+        prosječna povezanost: {av_connections()},
+        povezanost pojedinaca: {povezanost()}
+      """)
+'''

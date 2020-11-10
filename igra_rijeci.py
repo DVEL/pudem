@@ -15,7 +15,7 @@ while True:
 
 def rasp(year):
     mj  = year*12
-    dan = year*365 
+    dan = year*365
     raspodjela = dict(god = year, mj = mj, dan = dan)
     return raspodjela
 
@@ -32,6 +32,7 @@ print(ispis.format(godina=det["god"],mjeseci=det["mj"],dana=det["dan"]))
 
 
 ####
+
 '''
 ispis1 = f"""S obzirom da imaš {year:^5} godina
                    dakle imaš: {mj:^5} mjeseca
@@ -40,7 +41,7 @@ ispis1 = f"""S obzirom da imaš {year:^5} godina
                   {sek} sekundi"""
 print(ispis1)
 # ili
-                  
+
 ispis2 = """S obzirom da imaš {year:^5} godina
                    dakle imaš: {mj:^5} mjeseca
                   {dana:^5} dana
@@ -48,6 +49,4 @@ ispis2 = """S obzirom da imaš {year:^5} godina
                   {sek} sekundi"""
 
 print(ispis2.format(year=year,mj=mj,dana=dana,sati=sati,sek=sek))
-
-'''
 
